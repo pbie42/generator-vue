@@ -1,7 +1,8 @@
 const Generator = require('yeoman-generator')
-const { input_prompts, another_prompts, button_prompts, checkbox_prompts,
-				date_prompts, email_prompts, name_prompts, number_prompts, password_prompts } = require('./prompts')
 const datepicker = require('inquirer-datepicker-prompt')
+const { input_prompts, another_prompts, button_prompts, checkbox_prompts,
+				date_prompts, email_prompts, name_prompts, number_prompts, password_prompts,
+				radio_prompts, text_prompts, textarea_prompts } = require('./prompts')
 
 const newForm = {
 	name: "",
@@ -12,7 +13,6 @@ const newForm = {
 	Numbers: [],
 	Passwords: [],
 	Radios: [],
-	Submits: [],
 	Texts: [],
 	TextAreas: [],
 	Times: [],
@@ -52,6 +52,9 @@ class VueForm extends Base {
 			if (props.input == "Email") this.askForType.call(this, cb, email_prompts)
 			if (props.input == "Number") this.askForType.call(this, cb, number_prompts)
 			if (props.input == "Password") this.askForType.call(this, cb, password_prompts)
+			if (props.input == "Radio") this.askForType.call(this, cb, radio_prompts)
+			if (props.input == "Text") this.askForType.call(this, cb, text_prompts)
+			if (props.input == "TextArea") this.askForType.call(this, cb, textarea_prompts)
 		}.bind(this))
 	}
 

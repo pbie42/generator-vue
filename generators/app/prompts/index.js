@@ -7,6 +7,8 @@ const email_prompts = require('./email_prompts')
 const name_prompts = require('./name_prompts')
 const number_prompts = require('./number_prompts')
 const password_prompts = require('./password_prompts')
+const radio_prompts = require('./radio_prompts')
+const text_prompts = require('./text_prompts')
 
 
 module.exports = {
@@ -18,5 +20,7 @@ module.exports = {
 	email_prompts,
 	name_prompts,
 	number_prompts,
-	password_prompts
+	password_prompts,
+	radio_prompts,
+	text_prompts
 }
