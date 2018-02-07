@@ -6,6 +6,7 @@ const inputTypes = [
 	"Number",
 	"Password",
 	"Radio",
+	"Select",
 	"Text",
 	"TextArea",
 	"Time",

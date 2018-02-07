@@ -8,6 +8,7 @@ const name_prompts = require('./name_prompts')
 const number_prompts = require('./number_prompts')
 const password_prompts = require('./password_prompts')
 const radio_prompts = require('./radio_prompts')
+const select_prompts = require('./select_prompts')
 const text_prompts = require('./text_prompts')
 const time_prompts = require('./time_prompts')
 const url_prompts = require('./url_prompts')
@@ -24,6 +25,7 @@ module.exports = {
 	number_prompts,
 	password_prompts,
 	radio_prompts,
+	select_prompts,
 	text_prompts,
 	time_prompts,
 	url_prompts

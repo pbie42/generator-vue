@@ -1,8 +1,9 @@
 const Generator = require('yeoman-generator')
 const datepicker = require('inquirer-datepicker-prompt')
 const { input_prompts, another_prompts, button_prompts, checkbox_prompts,
-				date_prompts, email_prompts, name_prompts, number_prompts, password_prompts,
-				radio_prompts, text_prompts, textarea_prompts, time_prompts, url_prompts } = require('./prompts')
+				date_prompts, email_prompts, name_prompts, number_prompts, option_prompts,
+				password_prompts, radio_prompts, select_prompts, text_prompts,
+				textarea_prompts, time_prompts,url_prompts } = require('./prompts')
 
 const newForm = {
 	name: "",
@@ -13,6 +14,7 @@ const newForm = {
 	Numbers: [],
 	Passwords: [],
 	Radios: [],
+	Selects: [],
 	Texts: [],
 	TextAreas: [],
 	Times: [],
@@ -53,6 +55,7 @@ class VueForm extends Base {
 			if (props.input == "Number") this.askForType.call(this, cb, number_prompts)
 			if (props.input == "Password") this.askForType.call(this, cb, password_prompts)
 			if (props.input == "Radio") this.askForType.call(this, cb, radio_prompts)
+			if (props.input == "Select") this.askForSelect.call(this, cb, select_prompts)
 			if (props.input == "Text") this.askForType.call(this, cb, text_prompts)
 			if (props.input == "TextArea") this.askForType.call(this, cb, textarea_prompts)
 			if (props.input == "Time") this.askForType.call(this, cb, time_prompts)
@@ -69,6 +72,20 @@ class VueForm extends Base {
 	askForAnother(cb) {
 		return this.prompt(another_prompts).then(function (props) {
 			if (props.another) this.askForInputs.call(this, cb)
+		}.bind(this))
+	}
+
+	askForSelect(cb, prompts) {
+		return this.prompt(prompts).then(function (props) {
+			if (props.add) this.askForOption(this, cb, option_prompts, props)
+			else this.askForAnother(this, cb)
+		}.bind(this))
+	}
+
+	askForOption(cb, prompts, prev) {
+		return this.prompt(prompts).then(function (props) {
+			if (props.another) this.askForOption(this, cb, option_prompts, props)
+			else this.askForAnother(this, cb)
 		}.bind(this))
 	}
 
