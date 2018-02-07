@@ -6,6 +6,7 @@ const date_prompts = require('./date_prompts')
 const email_prompts = require('./email_prompts')
 const name_prompts = require('./name_prompts')
 const number_prompts = require('./number_prompts')
+const password_prompts = require('./password_prompts')
 
 
 module.exports = {
@@ -16,5 +17,6 @@ module.exports = {
 	date_prompts,
 	email_prompts,
 	name_prompts,
-	number_prompts
+	number_prompts,
+	password_prompts
 }

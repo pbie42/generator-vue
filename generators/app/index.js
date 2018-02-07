@@ -1,6 +1,6 @@
 const Generator = require('yeoman-generator')
 const { input_prompts, another_prompts, button_prompts, checkbox_prompts,
-				date_prompts, email_prompts, name_prompts, number_prompts } = require('./prompts')
+				date_prompts, email_prompts, name_prompts, number_prompts, password_prompts } = require('./prompts')
 const datepicker = require('inquirer-datepicker-prompt')
 
 const newForm = {
@@ -51,6 +51,7 @@ class VueForm extends Base {
 			if (props.input == "Date") this.askForType.call(this, cb, date_prompts)
 			if (props.input == "Email") this.askForType.call(this, cb, email_prompts)
 			if (props.input == "Number") this.askForType.call(this, cb, number_prompts)
+			if (props.input == "Password") this.askForType.call(this, cb, password_prompts)
 		}.bind(this))
 	}
 
