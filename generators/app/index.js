@@ -8,15 +8,23 @@ class Base extends Generator {
 
 class VueForm extends Base {
 
-	// askForName() {
-	// 	retun this.prompt(prompts).then(function (props) {
-			
-	// 	}.bind(this))
-	// }
+	askForName(cb) {
+		const prompts = [
+			{
+				type: "input",
+				name: "name",
+				message: "What is the form component name?",
+				default: "GenericForm"
+			}
+		]
+		return this.prompt(prompts).then(function (props) {
+			this.askPrompts(this, cb)
+		}.bind(this))
+	}
 
 	askForPrompts() {
 		const cb = this.async()
-		this.askPrompts.call(this, cb)
+		this.askForName.call(this, cb)
 	}
 
 	askPrompts(cb) {
@@ -43,8 +51,8 @@ class VueForm extends Base {
 			{
 				type: "confirm",
 				name: "another",
-				message: "Would you like to add another input?",
-				default: false
+				message: "Add another input?",
+				default: true
 			}
 		]
 		return this.prompt(prompts).then(function (props) {
