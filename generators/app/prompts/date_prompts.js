@@ -32,20 +32,20 @@ const prompts = [
 	},
 	{
 		type: "datetime",
-		name: "minVal",
+		name: "min",
 		message: "What is the minimum date?",
 		format: [ 'm', '/', 'd', '/', 'yy' ],
 		when: function (answers) { return answers.minimum == true }
 	},
 	{
 		type: "confirm",
-		name: "minimum",
+		name: "maximum",
 		message: "Is there a maximum date?",
 		default: false
 	},
 	{
 		type: "datetime",
-		name: "minVal",
+		name: "max",
 		message: "What is the maximum date?",
 		format: [ 'm', '/', 'd', '/', 'yy' ],
 		when: function (answers) { return answers.maximum == true }

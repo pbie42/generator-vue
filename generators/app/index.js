@@ -2,7 +2,7 @@ const Generator = require('yeoman-generator')
 const datepicker = require('inquirer-datepicker-prompt')
 const { input_prompts, another_prompts, button_prompts, checkbox_prompts,
 				date_prompts, email_prompts, name_prompts, number_prompts, password_prompts,
-				radio_prompts, text_prompts, textarea_prompts } = require('./prompts')
+				radio_prompts, text_prompts, textarea_prompts, time_prompts, url_prompts } = require('./prompts')
 
 const newForm = {
 	name: "",
@@ -55,6 +55,8 @@ class VueForm extends Base {
 			if (props.input == "Radio") this.askForType.call(this, cb, radio_prompts)
 			if (props.input == "Text") this.askForType.call(this, cb, text_prompts)
 			if (props.input == "TextArea") this.askForType.call(this, cb, textarea_prompts)
+			if (props.input == "Time") this.askForType.call(this, cb, time_prompts)
+			if (props.input == "Url") this.askForType.call(this, cb, url_prompts)
 		}.bind(this))
 	}
 

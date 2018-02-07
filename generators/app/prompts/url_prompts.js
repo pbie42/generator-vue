@@ -2,33 +2,40 @@ const prompts = [
 	{
 		type: "input",
 		name: "name",
-		message: "What is the password input name?",
-		default: "password"
+		message: "What is the url input name?",
+		default: "url"
 	},
 	{
 		type: "confirm",
 		name: "required",
-		message: "Is the password input required?",
+		message: "Is the url input required?",
 		default: true
 	},
 	{
 		type: "confirm",
-		name: "autocomplete",
-		message: "Allow autocomplete? (For password managers and browsers)",
-		default: true
-	},
-	{
-		type: "choice",
-		name: "autoType",
-		message: "Which type of autocomplete?",
-		choices: [ "on", "off", "current-password", "new-password" ],
-		when: function (answers) { return answers.minimum == true }
-	},
-	{
-		type: "confirm",
-		name: "inputmode",
-		message: "Do you want the input numeric for PINs only?",
+		name: "default",
+		message: "Is there a default value?",
 		default: false
+	},
+	{
+		type: "input",
+		name: "value",
+		message: "What is the default value?",
+		default: "http://www.example.com",
+		when: function (answers) { return answers.default == true }
+	},
+	{
+		type: "confirm",
+		name: "placeholder",
+		message: "Do you want a placeholder?",
+		default: true
+	},
+	{
+		type: "input",
+		name: "placeholder",
+		message: "What is the placeholder?",
+		default: "http://www.example.com",
+		when: function (answers) { return answers.placeholder == true }
 	},
 	{
 		type: "confirm",
