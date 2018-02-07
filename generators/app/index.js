@@ -1,4 +1,27 @@
 const Generator = require('yeoman-generator')
+const input_prompts = require('../../prompts/input_prompts')
+const another_prompts = require('../../prompts/another_prompts')
+const button_prompts = require('../../prompts/button_prompts')
+const checkbox_prompts = require('../../prompts/checkbox_prompts')
+const date_prompts = require('../../prompts/date_prompts')
+const name_prompts = require('../../prompts/name_prompts')
+const datepicker = require('inquirer-datepicker-prompt')
+
+const newForm = {
+	name: "",
+	Buttons: [],
+	Checkboxes: [],
+	Dates: [],
+	Emails: [],
+	Numbers: [],
+	Passwords: [],
+	Radios: [],
+	Submits: [],
+	Texts: [],
+	TextAreas: [],
+	Times: [],
+	Urls: []
+}
 
 class Base extends Generator {
 	mirror(name, data={}) {
@@ -8,18 +31,9 @@ class Base extends Generator {
 
 class VueForm extends Base {
 
-	askForName(cb) {
-		const prompts = [
-			{
-				type: "input",
-				name: "name",
-				message: "What is the form component name?",
-				default: "GenericForm"
-			}
-		]
-		return this.prompt(prompts).then(function (props) {
-			this.askPrompts(this, cb)
-		}.bind(this))
+	constructor(...args) {
+		super(...args)
+		this.env.adapter.promptModule.registerPrompt('datetime', datepicker)
 	}
 
 	askForPrompts() {
@@ -27,38 +41,30 @@ class VueForm extends Base {
 		this.askForName.call(this, cb)
 	}
 
-	askPrompts(cb) {
-		const prompts = [
-			{
-				type: "list",
-				name: "input",
-				message: "What is the input type to wish to add?",
-				choices: [
-					"Button",
-					"Checkbox",
-					"Date",
-					"Email",
-					"Number",
-					"Password",
-					"Radio",
-					"Submit",
-					"Text",
-					"TextArea",
-					"Time",
-					"Url"
-				]
-			},
-			{
-				type: "confirm",
-				name: "another",
-				message: "Add another input?",
-				default: true
-			}
-		]
+	askForName(cb) {
+		return this.prompt(name_prompts).then(function (props) {
+			this.askForInputs(this, cb)
+		}.bind(this))
+	}
+
+	askForInputs(cb) {
+		const prompts = input_prompts
 		return this.prompt(prompts).then(function (props) {
-			if (props.another) {
-				this.askPrompts.call(this, cb)
-			}
+			if (props.input == "Button") this.askForType.call(this, cb, button_prompts)
+			if (props.input == "Checkbox") this.askForType.call(this, cb, checkbox_prompts)
+			if (props.input == "Date") this.askForType.call(this, cb, date_prompts)
+		}.bind(this))
+	}
+
+	askForType(cb, prompts) {
+		return this.prompt(prompts).then(function (props) {
+			this.askForAnother(this, cb)
+		}.bind(this))
+	}
+
+	askForAnother(cb) {
+		return this.prompt(another_prompts).then(function (props) {
+			if (props.another) this.askForInputs.call(this, cb)
 		}.bind(this))
 	}
 
@@ -66,58 +72,5 @@ class VueForm extends Base {
 		return this.askForPrompts()
 	}
 }
-
-// function() {
-// 	var answers = {
-// 		 times: [],
-// 		 title: undefined,
-// 		 type: undefined
-// 	};
-
-// 	function promptMe(prompt, cb) {
-// 		 self.prompt(prompt, function (props) {
-// 			  if(props.answer!= "done") {
-// 					answers.times.push(props.time);
-// 					promptMe(prompt, cb);
-// 			  } else {
-// 					cb();
-// 			  }
-// 		 });
-// 	}
-
-// 	var cb = this.async(),
-// 		 self = this,
-// 		 movieTypePrompt = {
-// 			  type: 'input',
-// 			  name: 'movieType',
-// 			  message: chalk.yellow('What is your favorite type of movie?'),
-// 			  default: 'Action'
-// 		 },
-// 		 movieTitilePrompt = {
-// 			  type: 'input',
-// 			  name: 'movieTitle',
-// 			  message: chalk.yellow('What is your favorite movie?'),
-// 			  default: 'Tron: Legacy'
-// 		 }
-// 		 movieTimePrompt = {
-// 			  type: 'input',
-// 			  name: 'time',
-// 			  message: chalk.yellow('When can you watch a movie? (enter \'done\' when you are done entering times)'),
-// 			  default: '8PM'
-// 		 };
-
-// 	//Prompt for movie type and title
-// 	this.prompt([movieTypePrompt, movieTitlePrompt], function (props) {
-// 		 answers.title = props.movieTitle;
-// 		 answers.type = props.movieType;
-
-// 		 //Repeatedly prompt for movie times
-// 		 promptMe(moviePrompt, function() {
-// 			  console.log('done');
-
-// 			  cb();
-// 		 });
-// 	}.bind(this));
-// }
 
 module.exports = VueForm
