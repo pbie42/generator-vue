@@ -1,16 +1,23 @@
 const inputTypes = [
 	"Button",
 	"Checkbox",
+	"Color",
 	"Date",
+	"DateTime-Local",
 	"Email",
+	"Month",
 	"Number",
 	"Password",
 	"Radio",
+	"Range",
+	"Search",
 	"Select",
+	"Tel",
 	"Text",
 	"TextArea",
 	"Time",
-	"Url"
+	"Url",
+	"Week"
 ]
 
 const prompts = [

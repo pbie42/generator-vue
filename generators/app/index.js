@@ -1,24 +1,32 @@
 const Generator = require('yeoman-generator')
 const datepicker = require('inquirer-datepicker-prompt')
-const { input_prompts, another_prompts, button_prompts, checkbox_prompts,
-				date_prompts, email_prompts, name_prompts, number_prompts, option_prompts,
-				password_prompts, radio_prompts, select_prompts, text_prompts,
-				textarea_prompts, time_prompts,url_prompts } = require('./prompts')
+const { input_prompts, another_prompts, button_prompts, checkbox_prompts, color_prompts,
+				date_prompts, datetime_prompts, email_prompts, month_prompts, name_prompts,
+				number_prompts, option_prompts, password_prompts, radio_prompts, range_prompts,
+				search_prompts, select_prompts, tel_prompts, text_prompts, textarea_prompts,
+				time_prompts, url_prompts, week_prompt } = require('./prompts')
 
 const newForm = {
 	name: "",
 	Buttons: [],
 	Checkboxes: [],
+	Colors: [],
 	Dates: [],
+	DateTimes: [],
 	Emails: [],
+	Months: [],
 	Numbers: [],
 	Passwords: [],
 	Radios: [],
+	Ranges: [],
+	Searches: [],
 	Selects: [],
+	Tels: [],
 	Texts: [],
 	TextAreas: [],
 	Times: [],
-	Urls: []
+	Urls: [],
+	Weeks: []
 }
 
 class Base extends Generator {
@@ -50,16 +58,23 @@ class VueForm extends Base {
 		return this.prompt(prompts).then(function (props) {
 			if (props.input == "Button") this.askForType.call(this, cb, button_prompts)
 			if (props.input == "Checkbox") this.askForType.call(this, cb, checkbox_prompts)
+			if (props.input == "Color") this.askForType.call(this, cb, color_prompts)
 			if (props.input == "Date") this.askForType.call(this, cb, date_prompts)
+			if (props.input == "DateTime-Local") this.askForType.call(this, cb, datetime_prompts)
 			if (props.input == "Email") this.askForType.call(this, cb, email_prompts)
+			if (props.input == "Month") this.askForType.call(this, cb, month_prompts)
 			if (props.input == "Number") this.askForType.call(this, cb, number_prompts)
 			if (props.input == "Password") this.askForType.call(this, cb, password_prompts)
 			if (props.input == "Radio") this.askForType.call(this, cb, radio_prompts)
+			if (props.input == "Range") this.askForType.call(this, cb, range_prompts)
+			if (props.input == "Search") this.askForType.call(this, cb, search_prompts)
 			if (props.input == "Select") this.askForSelect.call(this, cb, select_prompts)
+			if (props.input == "Tel") this.askForType.call(this, cb, tel_prompts)
 			if (props.input == "Text") this.askForType.call(this, cb, text_prompts)
 			if (props.input == "TextArea") this.askForType.call(this, cb, textarea_prompts)
 			if (props.input == "Time") this.askForType.call(this, cb, time_prompts)
 			if (props.input == "Url") this.askForType.call(this, cb, url_prompts)
+			if (props.input == "Week") this.askForType.call(this, cb, week_prompt)
 		}.bind(this))
 	}
 
