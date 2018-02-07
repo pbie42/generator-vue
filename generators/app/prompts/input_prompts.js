@@ -17,7 +17,7 @@ const prompts = [
 	{
 		type: "list",
 		name: "input",
-		message: "What is the input type to wish to add?",
+		message: "What is the input type you wish to add?",
 		choices: inputTypes
 	}
 ]
