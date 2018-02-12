@@ -13,16 +13,16 @@ const prompts = [
 	},
 	{
 		type: "confirm",
-		name: "default",
+		name: "isDefault",
 		message: "Is there a default month?",
 		default: true
 	},
 	{
 		type: "datetime",
-		name: "defaultVal",
+		name: "default",
 		message: "What is the default month?",
-		format: [ 'yy', 'm' ],
-		when: function (answers) { return answers.default == true }
+		format: [ 'yyyy', '-', 'm' ],
+		when: function (answers) { return answers.isDefault == true }
 	},
 	{
 		type: "confirm",
@@ -34,7 +34,7 @@ const prompts = [
 		type: "datetime",
 		name: "min",
 		message: "What is the minimum month?",
-		format: [ 'yy', 'm' ],
+		format: [ 'yyyy', '-', 'm' ],
 		when: function (answers) { return answers.minimum == true }
 	},
 	{
@@ -47,7 +47,7 @@ const prompts = [
 		type: "datetime",
 		name: "max",
 		message: "What is the maximum month?",
-		format: [ 'yy', 'm' ],
+		format: [ 'yyyy', '-', 'm' ],
 		when: function (answers) { return answers.maximum == true }
 	}
 ]

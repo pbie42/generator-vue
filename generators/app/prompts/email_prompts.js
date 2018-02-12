@@ -13,7 +13,7 @@ const prompts = [
 	},
 	{
 		type: "confirm",
-		name: "placeholder",
+		name: "isPlaceholder",
 		message: "Do you want a placeholder?",
 		default: true
 	},
@@ -22,7 +22,7 @@ const prompts = [
 		name: "placeholder",
 		message: "What is the placeholder?",
 		default: "username@email.com",
-		when: function (answers) { return answers.placeholder == true }
+		when: function (answers) { return answers.isPlaceholder == true }
 	},
 	{
 		type: "confirm",
