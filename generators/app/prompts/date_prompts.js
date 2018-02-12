@@ -13,16 +13,16 @@ const prompts = [
 	},
 	{
 		type: "confirm",
-		name: "isDefault",
+		name: "default",
 		message: "Is there a default date?",
 		default: true
 	},
 	{
 		type: "datetime",
-		name: "default",
+		name: "value",
 		message: "What is the default date?",
 		format: [ 'yyyy', '-', 'mm', '-', 'dd' ],
-		when: function (answers) { return answers.isDefault == true }
+		when: function (answers) { return answers.default == true }
 	},
 	{
 		type: "confirm",

@@ -13,16 +13,29 @@ const prompts = [
 	},
 	{
 		type: "confirm",
-		name: "autocomplete",
+		name: "auto",
 		message: "Allow autocomplete? (For password managers and browsers)",
 		default: true
 	},
 	{
-		type: "choice",
-		name: "autoType",
+		type: "list",
+		name: "autocomplete",
 		message: "Which type of autocomplete?",
 		choices: [ "on", "off", "current-password", "new-password" ],
-		when: function (answers) { return answers.minimum == true }
+		when: function (answers) { return answers.auto == true }
+	},
+	{
+		type: "confirm",
+		name: "placeholder",
+		message: "Do you want a placeholder?",
+		default: false
+	},
+	{
+		type: "input",
+		name: "placeholder",
+		message: "What is the placeholder?",
+		default: "Enter Password",
+		when: function (answers) { return answers.placeholder == true }
 	},
 	{
 		type: "confirm",
@@ -38,7 +51,7 @@ const prompts = [
 	},
 	{
 		type: 'input',
-		name: 'minlength',
+		name: 'min',
 		message: 'What is the minimum char length?',
 		validate: function(value) {
 			var valid = !isNaN(parseFloat(value))
@@ -55,7 +68,7 @@ const prompts = [
 	},
 	{
 		type: 'input',
-		name: 'maxlength',
+		name: 'max',
 		message: 'What is the maximum char length?',
 		validate: function(value) {
 			var valid = !isNaN(parseFloat(value))

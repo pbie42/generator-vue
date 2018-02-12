@@ -13,16 +13,16 @@ const prompts = [
 	},
 	{
 		type: "confirm",
-		name: "isDefault",
+		name: "default",
 		message: "Is there a default datetime?",
 		default: false
 	},
 	{
 		type: "datetime",
-		name: "default",
-		message: "What is the default datetime?",
-		format: [ 'yyyy', '-', 'mm', '-', 'dd', 'T', 'hh', ':', 'MM' ],
-		when: function (answers) { return answers.isDefault == true }
+		name: "value",
+		message: "What is the default datetime value?",
+		format: [ 'yyyy', '-', 'mm', '-', 'dd', ' ', 'hh', ':', 'MM', ' ', 'TT' ],
+		when: function (answers) { return answers.default == true }
 	},
 	{
 		type: "confirm",
@@ -34,7 +34,7 @@ const prompts = [
 		type: "datetime",
 		name: "min",
 		message: "What is the minimum datetime?",
-		format: [ 'yyyy', '-', 'mm', '-', 'dd', 'T', 'hh', ':', 'MM' ],
+		format: [ 'yyyy', '-', 'mm', '-', 'dd', ' ', 'hh', ':', 'MM', ' ', 'TT' ],
 		when: function (answers) { return answers.minimum == true }
 	},
 	{
@@ -47,7 +47,7 @@ const prompts = [
 		type: "datetime",
 		name: "max",
 		message: "What is the maximum datetime?",
-		format: [ 'yyyy', '-', 'mm', '-', 'dd', 'T', 'hh', ':', 'MM' ],
+		format: [ 'yyyy', '-', 'mm', '-', 'dd', ' ', 'hh', ':', 'MM', ' ', 'TT' ],
 		when: function (answers) { return answers.maximum == true }
 	}
 ]

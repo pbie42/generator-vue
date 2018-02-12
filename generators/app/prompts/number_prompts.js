@@ -20,7 +20,7 @@ const prompts = [
 	{
 		type: "input",
 		name: "value",
-		message: "What is the default number?",
+		message: "What is the default number value?",
 		validate: function(value) {
 			var valid = !isNaN(parseFloat(value))
 			return valid || 'Please enter a number'
@@ -30,7 +30,7 @@ const prompts = [
 	},
 	{
 		type: "confirm",
-		name: "placeholder",
+		name: "isPlaceholder",
 		message: "Do you want a placeholder?",
 		default: false
 	},
@@ -39,24 +39,24 @@ const prompts = [
 		name: "placeholder",
 		message: "What is the placeholder?",
 		default: "Multiple of 10",
-		when: function (answers) { return answers.placeholder == true }
+		when: function (answers) { return answers.isPlaceholder == true }
 	},
 	{
 		type: "confirm",
-		name: "step",
+		name: "isStep",
 		message: "Do you want to set a step size (this allows decimals as well)?",
 		default: false
 	},
 	{
 		type: "input",
-		name: "value",
+		name: "step",
 		message: "What is the step size (add decimal value if wanted)?",
 		validate: function(value) {
 			var valid = !isNaN(parseFloat(value))
 			return valid || 'Please enter a number'
 		},
 		filter: Number,
-		when: function (answers) { return answers.step == true }
+		when: function (answers) { return answers.isStep == true }
 	},
 	{
 		type: "confirm",
