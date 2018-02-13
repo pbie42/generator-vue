@@ -27,7 +27,7 @@ class VueForm extends Base {
 
 	writing() {
 		console.log(`is it here?`)
-		this.fs.copyTpl(this.templatePath('form.vue'), this.destinationPath('test/form.vue'), newForm)
+		this.fs.copyTpl(this.templatePath('form.vue'), this.destinationPath('forms/form.vue'), newForm)
 		console.log(`happening`)
 	}
 }
