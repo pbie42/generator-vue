@@ -5,7 +5,7 @@
       <% if (texts.length > 0){ %><!-- Text --><% } %><% texts.forEach(text => { %>
       <div>
         <label for="text">Text</label>
-        <input type="text" id="text"<% if (text.value){ %> value="<%= text.value %>"<% } %><% if (text.placeholder){ %> placeholder="<%= text.placeholder %>" <% } %><% if (text.min){ %>minlength="<%= text.min %>" <% } %><% if (text.max){ %>maxlength="<%= text.max %>" <% } %><% if (text.required){ %>required <% } %>>
+        <input type="text" id="text" name="<%= text.name%>"<% if (text.value){ %> value="<%= text.value %>"<% } %><% if (text.placeholder){ %> placeholder="<%= text.placeholder %>" <% } %><% if (text.min){ %>minlength="<%= text.min %>" <% } %><% if (text.max){ %>maxlength="<%= text.max %>" <% } %><% if (text.required){ %>required <% } %>>
       </div>
       <% }) %>
       <% if (emails.length > 0){ %><!-- Email --><% } %><% emails.forEach(email => { %>
@@ -17,13 +17,13 @@
       <% if (numbers.length > 0){ %><!-- Number --><% } %><% numbers.forEach(number => { %>
       <div>
         <label for="number">number</label>
-        <input type="number" id="number" <% if (number.value){ %>value="<%= number.value %>" <% } %><% if (number.placeholder){ %>placeholder="<%= number.placeholder %>" <% } %><% if (number.step){ %>step="<%= number.step %>" <% } %><% if (number.min){ %>min="<%= number.min %>" <% } %><% if (number.max){ %>max="<%= number.max %>" <% } %><% if (number.required){ %>required <% } %>>
+        <input type="number" id="number" name="<%= number.name%>"<% if (number.value){ %>value="<%= number.value %>" <% } %><% if (number.placeholder){ %>placeholder="<%= number.placeholder %>" <% } %><% if (number.step){ %>step="<%= number.step %>" <% } %><% if (number.min){ %>min="<%= number.min %>" <% } %><% if (number.max){ %>max="<%= number.max %>" <% } %><% if (number.required){ %>required <% } %>>
       </div>
       <% }) %>
       <% if (passwords.length > 0){ %><!-- Password --><% } %><% passwords.forEach(password => { %>
       <div>
         <label for="password">password</label>
-        <input type="password" id="password"<% if (password.placeholder){ %> placeholder="<%= password.placeholder %>" <% } %><% if (password.autocomplete){ %>autocomplete="<%= password.autocomplete %>" <% } %><% if (password.min){ %>minlength="<%= password.min %>" <% } %><% if (password.max){ %>maxlength="<%= password.max %>" <% } %><% if (password.inputmode){ %>inputmode="numeric" <% } %><% if (password.required){ %>required <% } %>>
+        <input type="password" id="password" name="<%= password.name%>"<% if (password.placeholder){ %> placeholder="<%= password.placeholder %>" <% } %><% if (password.autocomplete){ %>autocomplete="<%= password.autocomplete %>" <% } %><% if (password.min){ %>minlength="<%= password.min %>" <% } %><% if (password.max){ %>maxlength="<%= password.max %>" <% } %><% if (password.inputmode){ %>inputmode="numeric" <% } %><% if (password.required){ %>required <% } %>>
       </div>
       <% }) %>
       <% if (times.length > 0){ %><!-- Time --><% } %><% times.forEach(time => { %>
@@ -47,7 +47,7 @@
       <% if (urls.length > 0){ %><!-- Url --><% } %><% urls.forEach(url => { %>
       <div>
         <label for="url">url</label>
-        <input type="url" id="url"<% if (url.value){ %> value="<%= url.value %>"<% } %><% if (url.placeholder){ %> placeholder="<%= url.placeholder %>" <% } %><% if (url.min){ %>minlength="<%= url.min %>" <% } %><% if (url.max){ %>maxlength="<%= url.max %>" <% } %><% if (url.required){ %>required <% } %>>
+        <input type="url" id="url" name="<%= url.name%>"<% if (url.value){ %> value="<%= url.value %>"<% } %><% if (url.placeholder){ %> placeholder="<%= url.placeholder %>" <% } %><% if (url.min){ %>minlength="<%= url.min %>" <% } %><% if (url.max){ %>maxlength="<%= url.max %>" <% } %><% if (url.required){ %>required <% } %>>
       </div>
       <% }) %>
       <% if (radios.length > 0){ %><!-- Radio --><% } %><% radios.forEach(radio => { %>
@@ -59,19 +59,19 @@
       <% if (textAreas.length > 0){ %><!-- Textarea --><% } %><% textAreas.forEach(textarea => { %>
       <div>
         <label for="textarea">textarea</label>
-        <textarea type="textarea" id="textarea"<% if (textarea.value){ %> value="<%= textarea.value %>"<% } %><% if (textarea.placeholder){ %> placeholder="<%= textarea.placeholder %>" <% } %><% if (textarea.min){ %>minlength="<%= textarea.min %>" <% } %><% if (textarea.max){ %>maxlength="<%= textarea.max %>" <% } %><% if (textarea.rows){ %>rows="<%= textarea.rows %>" <% } %><% if (textarea.cols){ %>cols="<%= textarea.cols %>" <% } %><% if (textarea.required){ %>required <% } %>></textarea>
+        <textarea type="textarea" id="textarea" name="<%= textarea.name%>"<% if (textarea.value){ %> value="<%= textarea.value %>"<% } %><% if (textarea.placeholder){ %> placeholder="<%= textarea.placeholder %>" <% } %><% if (textarea.min){ %>minlength="<%= textarea.min %>" <% } %><% if (textarea.max){ %>maxlength="<%= textarea.max %>" <% } %><% if (textarea.rows){ %>rows="<%= textarea.rows %>" <% } %><% if (textarea.cols){ %>cols="<%= textarea.cols %>" <% } %><% if (textarea.required){ %>required <% } %>></textarea>
       </div>
       <% }) %>
-      <!-- Select -->
-      <!-- <div>
+      <% if (selects.length > 0){ %><!-- Select --><% } %><% selects.forEach(select => { %>
+      <div>
         <label for="select">select</label>
         <select id="select">
           <option value="opt1">opt1</option>
           <option value="opt2">opt2</option>
           <option value="opt3">opt3</option>
         </select>
-      </div> -->
-      
+      </div>
+      <% }) %>
       <!-- NEW types - not supported by older web browsers -->
       
       <% if (colors.length > 0){ %><!-- Color --><% } %><% colors.forEach(color => { %>
@@ -101,20 +101,20 @@
       <% if (searches.length > 0){ %><!-- Search --><% } %><% searches.forEach(search => { %>
       <div>
         <label for="search">search</label>
-        <input type="search" id="search"<% if (search.placeholder){ %> placeholder="<%= search.placeholder %>" <% } %><% if (search.min){ %>minlength="<%= search.min %>" <% } %><% if (search.max){ %>maxlength="<%= search.max %>" <% } %><% if (search.required){ %>required <% } %>>
+        <input type="search" id="search" name="<%= search.name%>"<% if (search.placeholder){ %> placeholder="<%= search.placeholder %>" <% } %><% if (search.min){ %>minlength="<%= search.min %>" <% } %><% if (search.max){ %>maxlength="<%= search.max %>" <% } %><% if (search.required){ %>required <% } %>>
       </div>
       <% }) %>
-      <!-- Tel -->
-      <!-- <div>
+      <% if (tels.length > 0){ %><!-- Tel --><% } %><% tels.forEach(tel => { %>
+      <div>
         <label for="tel">tel</label>
-        <input type="tel" id="tel"></input>
-      </div> -->
-      <!-- Week -->
-      <!-- <div>
+        <input type="tel" id="tel" name="<%= tel.name%>"<% if (tel.value){ %> value="<%= tel.value %>"<% } %><% if (tel.placeholder){ %> placeholder="<%= tel.placeholder %>" <% } %><% if (tel.min){ %>minlength="<%= tel.min %>" <% } %><% if (tel.max){ %>maxlength="<%= tel.max %>" <% } %><% if (tel.required){ %>required <% } %>></input>
+      </div>
+      <% if (weeks.length > 0){ %><!-- Week --><% } %><% weeks.forEach(week => { %>
+      <div>
         <label for="week">week</label>
-        <input type="week" id="week"></input>
-      </div> -->
-      
+        <input type="week" id="week" name="<%= week.name %>" <% if(week.value) { %>value="<%= week.value %>"<% } %> <% if(week.min) { %>min="<%= week.min %>" <% } %><% if(week.max) { %>max="<%= week.max %>" <% } %><% if(week.required) { %>required<% } %>></input>
+      </div>
+      <% }) %>
       <!-- Button -->
     <% buttons.forEach(button => { %>
       <button name="<%= button.name %>" type="<%= button.type %>" value="<%= button.value %>">Submit</button>

@@ -19,7 +19,7 @@ const prompts = [
 	},
 	{
 		type: "input",
-		name: "weekYear",
+		name: "year",
 		message: "What is the default week's year?",
 		default: 2018,
 		validate: function(value) {
@@ -31,7 +31,7 @@ const prompts = [
 	},
 	{
 		type: "input",
-		name: "value",
+		name: "week",
 		message: "What is the default week?",
 		validate: function(value) {
 			var valid = !isNaN(parseFloat(value)) && parseFloat(value) > 0 && parseFloat(value) <= 52
@@ -61,7 +61,7 @@ const prompts = [
 	},
 	{
 		type: "input",
-		name: "minimum",
+		name: "minWeek",
 		message: "What is the minimum week?",
 		validate: function(value) {
 			var valid = !isNaN(parseFloat(value)) && parseFloat(value) > 0 && parseFloat(value) <= 52
@@ -91,7 +91,7 @@ const prompts = [
 	},
 	{
 		type: "input",
-		name: "maximum",
+		name: "maxWeek",
 		message: "What is the maximum week?",
 		validate: function(value) {
 			var valid = !isNaN(parseFloat(value)) && parseFloat(value) > 0 && parseFloat(value) <= 52

@@ -1,15 +1,13 @@
+function addZero(number) { return ("0" + (number)).slice(-2) }
+
 function valueOf(param) { return param || param >= 0 ? param : "" }
 
-function addZero(number) {
-  return ("0" + (number)).slice(-2)
+function formatMonth(dateObj) {
+  return dateObj ? `${dateObj.getFullYear()}-${addZero(dateObj.getMonth() + 1)}` : ''
 }
 
 function formatTime(timeObj) {
   return timeObj ? `${addZero(timeObj.getHours())}:${addZero(timeObj.getMinutes())}` : ''
-}
-
-function formatMonth(dateObj) {
-  return dateObj ? `${dateObj.getFullYear()}-${addZero(dateObj.getMonth() + 1)}` : ''
 }
 
 function formatDate(dateObj) {

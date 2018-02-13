@@ -1,5 +1,5 @@
 const prompts = require('../prompts')
-const newForm = require('./newForm')
+const newForm = require('./new_form')
 
 function askForInputs(that) {
 	return that.prompt(prompts.input).then(function (props) {
@@ -15,13 +15,13 @@ function askForInputs(that) {
 		if (props.input == "Radio") return askForRadio.call(this, that, prompts.radio)
 		if (props.input == "Range") return askForRange.call(this, that, prompts.range)
 		if (props.input == "Search") return askForSearch.call(this, that, prompts.search)
-		// if (props.input == "Select") this.askForSelect.call(this, cb, prompts.select)
-		// if (props.input == "Tel") this.askForType.call(this, cb, prompts.tel)
+		if (props.input == "Select") return askForSelect.call(this, that, prompts.select)
+		if (props.input == "Tel") return askForTel.call(this, that, prompts.tel)
 		if (props.input == "Text") return askForText.call(this, that, prompts.text)
 		if (props.input == "TextArea") return askForTextarea.call(this, that, prompts.textarea)
 		if (props.input == "Time") return askForTime.call(this, that, prompts.time)
 		if (props.input == "Url") return askForUrl.call(this, that, prompts.url)
-		// if (props.input == "Week") this.askForType.call(this, cb, prompts.week)
+		if (props.input == "Week") return askForWeek.call(this, that, prompts.week)
 	}.bind(this))
 }
 
@@ -175,6 +175,20 @@ function askForSearch(that, prompts) {
 	}.bind(that))
 }
 
+function askForTel(that, prompts) {
+	return that.prompt(prompts).then(function (props) {
+		const tel = {
+			name: props.name,
+			required: props.required,
+			placeholder: valueOf(props.placeholder),
+			min: valueOf(props.min),
+			max: valueOf(props.max),
+		}
+		newForm.tels.push(tel)
+		return askForAnother(that)
+	}.bind(that))
+}
+
 function askForText(that, prompts) {
 	return that.prompt(prompts).then(function (props) {
 		const text = {
@@ -239,6 +253,23 @@ function askForUrl(that, prompts) {
 	}.bind(that))
 }
 
+function askForWeek(that, prompts) {
+	return that.prompt(prompts).then(function (props) {
+		const value = props.year + "-W" + props.week
+		const min = props.minYear + "-W" + props.minWeek
+		const min = props.maxYear + "-W" + props.maxWeek
+		const week = {
+			name: props.name,
+			required: props.required,
+			value,
+			min,
+			max,
+		}
+		newForm.weeks.push(week)
+		return askForAnother(that)
+	}.bind(that))
+}
+
 function askForAnother(that) {
 	return that.prompt(prompts.another).then(function (props) {
 		if (props.another) return askForInputs.call(this, that)
@@ -246,6 +277,32 @@ function askForAnother(that) {
 	}.bind(that))
 }
 
+function askForSelect(that, prompts) {
+	return that.prompt(prompts).then(function (props) {
+		const select = {
+			name: props.name,
+			idNo: newForm.selects.length,
+			required: props.required,
+			multiple: props.multiple,
+			size: valueOf(props.size),
+			value,
+			min,
+			max,
+		}
+		newForm.selects.push(select)
+		if (props.add) return askForOption(this, that, prompts.option, idNo)
+		else return askForAnother(that)
+	}.bind(this))
+}
+
+function askForOption(that, prompts, selectNo) {
+	return that.prompt(prompts).then(function (props) {
+		const option = { idNo: selectNo, value: valueOf(props.value), selected: valueOf(props.selected) }
+		if (props.another) return askForOption(this, that, prompts.option, selectNo)
+		else return askForAnother(that)
+	}.bind(this))
+}
+
 module.exports = { askForInputs, askForButton, askForCheckbox, askForColor, askForDate,
   askForDateTime, askForEmail, askForMonth, askForNumber, askForPassword, askForRadio,
-  askForRange, askForSearch, askForText, askForTextarea, askForTime, askForUrl }
+  askForRange, askForSearch, askForTel, askForText, askForTextarea, askForTime, askForUrl, askForWeek }

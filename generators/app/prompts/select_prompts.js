@@ -15,7 +15,7 @@ const prompts = [
 		type: "confirm",
 		name: "multiple",
 		message: "Do you want to allow multiple selections?",
-		default: true
+		default: false
 	},
 	{
 		type: "confirm",

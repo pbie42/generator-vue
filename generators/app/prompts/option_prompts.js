@@ -1,7 +1,7 @@
 const prompts = [
 	{
 		type: "input",
-		name: "name",
+		name: "value",
 		message: "What is the option name/value?",
 		default: "option"
 	},
